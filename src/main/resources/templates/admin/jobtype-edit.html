@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments :: head"></head>
+<div th:replace="fragments :: navbar" />
+
+<body>
+	<main>
+		<section class="container py-5 frame">
+			<h2 class="text-center text-info">Промяна на услуга</h2>
+			<br>
+			<hr>
+			<div class="row mt-5">
+				<div class="col">
+					<h3 class="text-info">Категория:</h3>
+					<h3 class="text-info" th:text="${jobType.category}"></h3>
+				</div>
+				<div class="col">
+					<img th:src="'/'+${jobType.image}" class="img-fluid img-thumbnail" />
+				</div>
+			</div>
+
+			<hr>
+			<div class="mt-5">
+				<form action="#" th:action="@{/admin/jobtype/edit/}"
+					th:object="${jobType}" th:method="post" class="row">
+					<div class="col">
+						<input type="hidden" th:value="${jobType.id}" th:field="*{id}">
+						<label for="Name" class="text-info font-weight-bold">Наименование</label>
+						<input type="text" id="Name" class="form-control"
+							placeholder="Наименование" th:field="*{name}" /> 
+						<br> 
+						<label for="Regular_price" class="text-info font-weight-bold">Регулярна
+							цена</label> <input type="text" id="Regular_price" class="form-control"
+							placeholder="Регулярна цена" th:field="*{regularPrice}" /> 
+						<br>
+						<p>
+							<input type="submit" class="btn btn-info" value="Промени" />
+						</p>
+					</div>
+					<div class="col">
+						<label for="Is_promo" class="text-info font-weight-bold">Промоция</label>
+						<select id="Is_promo" class="form-control " th:field="*{promo}">
+							<option th:value="1">На промоция</option>
+							<option th:value="0">Без промоция</option>
+						</select> 
+						<br> 
+						<label for="Promo_price"
+							class="text-info font-weight-bold">Промоционална цена</label> 
+							<input
+							type="text" id="Promo_price" class="form-control"
+							placeholder="Промоционална цена" th:field="*{promoPrice}" /> 
+							<br>
+					</div>
+
+
+
+					
+				</form>
+			</div>
+		</section>
+
+
+	</main>
+	<th:block th:replace="fragments :: footer" />
+</body>
+</html>

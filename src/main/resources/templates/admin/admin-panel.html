@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments :: head"></head>
+<div th:replace="fragments :: navbar" />
+
+<body>
+	<main>
+		<section class="container frame">
+			<h1 class="py-5 text-center text-info">Администраторски панел</h1>
+			
+			<div class="row mt-5">
+				<h5 class="col-md-6 text-info">
+					Посещения	
+				</h5>
+				<div class="col-md-2">
+					<a class="btn btn-info btn-block" title="всички поръчки" href="/admin/jobs"> Всички </a>
+				</div>
+				<div class="col-md-2">
+					<a class="btn btn-info btn-block" title="непотвърдени поръчки" href="/admin/jobs?isCompleted=false"> Непотвърдени </a>
+				</div>
+				<div class="col-md-2">
+					<a class="btn btn-info btn-block" title="потвърдени поръчки" href="/admin/jobs?isCompleted=true"> Потвърдени </a>
+				</div>
+			</div>
+	
+			<div class="row mt-5">
+				<h5 class="col-md-6 text-info">
+					Видове услуги	
+				</h5>
+				<div class="col-md-2">
+					<a class="btn btn-info btn-block" title="добавяне на нова услуга" href="/admin/jobtype/add"> Добави </a>
+								
+				</div>
+				<div class="col-md-2">
+					<a class="btn btn-info btn-block" title="списък на всички услуги" href="/admin/jobtypes"> Виж всички</a>
+				</div>
+			</div>
+	
+			<div class="row mt-5">
+				<h5 class="col-md-6 text-info">
+					Запитвания	
+				</h5>
+				<div class="col-md-2">
+					<a class="btn btn-info btn-block" title="всичтки запитвания" href="/admin/questions"> Виж всички</a>
+				</div>
+				<div class="col-md-2">
+					<a class="btn btn-info btn-block" title="неотговорени запитвания" href="/admin/questions?isAnswered=false"> Неотговорени</a>
+				</div>
+				<div class="col-md-2">
+					<a class="btn btn-info btn-block" title="отговорени запитвания" href="/admin/questions?isAnswered=true"> Отговорени</a>
+				</div>
+			</div>
+			
+		</section>
+	</main>
+	<th:block th:replace="fragments :: footer" />
+</body>
+</html>

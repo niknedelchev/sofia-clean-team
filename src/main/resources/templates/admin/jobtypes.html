@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments :: head"></head>
+<div th:replace="fragments :: navbar" />
+
+<body>
+	<main>
+		<section class="container py-5 frame">
+					<h2 class="text-center text-info">Видове услуги</h2>
+					<br>
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Категория</th>
+								<th scope="col">Изображение</th>
+								<th scope="col">Наименование</th>
+								<th scope="col">Регулярна цена</th>
+								<th scope="col">Промоция</th>
+								<th scope="col">Промо цена</th>
+								<th scope="col">Промени</th>
+								<th scope="col">Изтрий</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="jobType : ${jobTypes}">
+								<th th:text="${jobType.id}" scope="row"></th>
+								<th th:text="${jobType.category}"> </th>
+								<td> <img th:src="'../'+${jobType.image}" th:alt="${jobType.category}" class="img-fluid img-thumbnail" style="min-width:175px;"/> </td>
+								<td th:text="${jobType.name}"></td>
+								<td th:text="${jobType.regularPrice}"></td>
+								<td th:text="${jobType.promo}"></td>
+								<td th:text="${jobType.promoPrice}"></td>
+								<td> <a class="btn btn-info btn-block" title="промяна на вида услуга" th:href="${'/admin/jobtype/edit/'+jobType.id}"> Промени </a></td>
+								<td> <a class="btn btn-danger btn-block" title="изтриване услугата" th:href="${'/admin/jobtype/delete/'+jobType.id}"> Изтрий </a></td>
+							</tr>
+						</tbody>
+					</table>
+		</section>
+
+
+	</main>
+	<th:block th:replace="fragments :: footer" />
+</body>
+</html>

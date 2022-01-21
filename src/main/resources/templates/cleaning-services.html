@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments :: head"></head>
+<div th:replace="fragments :: navbar" />
+
+<body>
+	<main>
+
+	<section class="container py-5 frame">
+			<div class="row">
+				<div class="col-sm-12 col-md-5">
+					<h3 class="text-info font-weight-bold">Категории</h3>
+					<br><br>
+					<div th:each="jobTypeCategory : ${jobTypeCategories}" class="list-group">
+						<a th:href="'/cleaning-services?category='+${jobTypeCategory}" th:title="${jobTypeCategory}" class="list-group-item list-group-item-action text-info font-weight-bold">
+							<span th:text="${jobTypeCategory}"/> 
+						</a>
+					</div>
+				</div>
+				<div class="col-sm-12 col-md-7">
+					<h3 class="text-info font-weight-bold">Видове услуги за професионално почистване</h3>
+					<h6 class="text-info font-weight-bold">Категория: <span th:text="${selectedJobTypes.get(0).category.toString()}"></span></h6>
+					<br>
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col" class="text-info font-weight-bold">#</th>
+								<th scope="col" class="text-info font-weight-bold">Услуга</th>
+								<th scope="col" class="text-info font-weight-bold">Цена</th>
+								<th scope="col" class="text-info font-weight-bold">Описание</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="selectedJobType : ${selectedJobTypes}">
+								<th class="text-info font-weight-bold" th:text="${selectedJobType.id}" scope="row"></th>
+								<td class="text-info font-weight-bold" th:text="${selectedJobType.name}"></td>
+								<td >
+									<span th:if="${selectedJobType.isPromo} == true" class="font-weight-bold" th:text="${#numbers.formatDecimal(selectedJobType.regularPrice,1,2) + ' лв'}" 
+									style="text-decoration-line: line-through; text-decoration-color: red; text-decoration-style: wavy;"></span>
+									<span th:if="${selectedJobType.isPromo} == true"  class="font-weight-bold"><mark th:text="${#numbers.formatDecimal(selectedJobType.promoPrice,1,2) + ' лв'}"></mark></span>
+									<span class="text-info font-weight-bold" th:if="${selectedJobType.isPromo} == false" th:text="${#numbers.formatDecimal(selectedJobType.regularPrice,1,2) + ' лв'}"></span>
+								</td>
+								<td class="text-info font-weight-bold" th:text="${selectedJobType.priceDescription}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+	</main>
+	<th:block th:replace="fragments :: footer" />
+</body>
+</html>

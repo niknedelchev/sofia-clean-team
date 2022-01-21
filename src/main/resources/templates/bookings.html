@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments :: head"></head>
+<div th:replace="fragments :: navbar" />
+
+<body>
+	<main>
+		<section class="container frame">
+
+			<div class="row mt-5">
+				<div class="col-md-4">
+					<form class="form-inline" action="/bookings" method="get">
+						<input class="form-control text-info" type="date" name="date">
+						<button class="btn btn-info" type="submit">Избери дата</button>
+					</form>
+				</div>
+				<div th:if="${date != null}" class="col-sm-4 col-md-2">
+					<h5 class="mt-2  text-info">Дата: <span th:text="${formatedDate}"></span></h5>
+				</div>
+				<div class="col-sm-12 col-md-6">
+					<form th:if="${date != null}" sec:authorize="hasRole('ROLE_CUSTOMER')" class="form-inline" action="/bookings" method="post">
+
+						<select name="jobType" class="form-control text-info" style="max-width:300px;">
+    					<option th:each="jobType : ${jobTypes}" 
+    							th:value="${jobType.id}" th:text="${jobType.name}">
+   						 </option>
+						</select>
+
+						<input class="form-control" type="hidden" th:value="${date}" name="jobDate">
+
+						<select name="jobTime" class="form-control text-info">
+    					<option th:each="hour : ${availableHours}" 
+    							th:value="${hour}" th:text="${hour.hour}">
+   						 </option>
+						</select>
+
+						<button class="btn btn-info" type="submit">Резервирай</button>
+					</form>
+				</div>
+			</div>
+
+
+			<h1 th:if="${date != null}" class="mt-5  text-info">Календар за седмицата</h1>
+			<div class="table-responsive mt-5">
+				<table class="table" th:if="${week != null}">
+					<thead>
+						<tr>
+							<th th:each="column : ${calendarHeaderRow}" th:id="${column[2]}" class="text-info" scope="col">
+								<p th:text="${column[0]}" >
+								<p>
+								<p th:text="${column[1]}"></p>
+							</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="entry : ${calendarRows}">
+							<th scope="row" class="text-info" th:text="${entry.key.hour}"></th>
+							<td th:each="value,stat : ${entry.value}"  class="text-info"
+								style="word-wrap: break-word; min-width: 160px; max-width: 160px;"
+								th:text="${(value!= null) ? value.jobType.name : ''}"
+								th:id="${(stat.index == dayIndx) ? 'highlighted' : ''}"></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</section>
+
+	</main>
+	<th:block th:replace="fragments :: footer" />
+</body>
+</html>

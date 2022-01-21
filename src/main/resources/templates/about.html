@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments :: head"></head>
+<div th:replace="fragments :: navbar" />
+
+<body>
+	<main>
+
+<div id="about" class="container frame py-5">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+      <h2 class="text-info text-center mt-3	">София Клийн Тийм</h2><br>
+      <h4 class="text-info mt-3">Чистотата е нашето мото. Професионалисти в сферата на почистването, ние сме опитен екип целящ да предостави качество на достъпни цени.</h4> 
+      <br>
+      <p class="text-info">
+	      Ние ви помагаме да поддържате вашият дом или офис безупречно чист.
+	      Почистване на офис, дом, апартамент, основно почистване след ремонт, пране на килими, чистене на силно замърсени повърхности - ние предоставяме точните решения от които се нуждаете.
+	      Било то рутинно почистване, или целенасочено, избирайки нас вие освобождавате време от домашните задължения и имате възможност го посветите на други занимания. Насладете се на свеж дом и отлична чистота.
+      </p>
+      <br>
+      <p class="text-info mb-5">
+	      Доверявайки се на нас вие може да бъдете сигурни за вашите вещи при извършваните от нас услуги. Спокойствието ви и отлично качество на почистване са нашите приоритети.
+      </p>
+     <br><br>
+      <a href="/contacts" title="контакти" class="btn btn-info btn-lg m-2">Свържете се с нас</a>
+      <a href="/terms" title="условия на ползване" class="btn btn-info btn-lg m-2">Условия за ползване</a>
+      <a href="/data-protection" title="защита на данните" class="btn btn-info btn-lg m-2">Защита на данните</a>
+	 
+    
+    </div>
+    <div class="col-sm-12 col-md-4">
+		<img src="images/Logo.jpg" alt="..." class="about-img">
+		<img src="images/16.jpg" alt="..." class="img-fluid about-img mt-4">
+						
+    </div>
+  </div>
+</div>
+
+	</main>
+	<th:block th:replace="fragments :: footer" />
+</body>
+</html>

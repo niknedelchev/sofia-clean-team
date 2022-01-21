@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments :: head"></head>
+<div th:replace="fragments :: navbar" />
+
+<body>
+	<main>
+		<section class="container py-5 frame">
+			<h2 class="text-center text-info">Промяна на статус</h2>
+			<br>
+
+			<form action="#" th:action="@{/admin/jobs/edit/{id}(id=${job.id})}"
+				th:object="${job}" th:method="post" class="w-50">
+				
+				<label for="Price" class="text-info font-weight-bold">Цена</label>
+				<input type="text" id="Price" class="form-control" th:field="*{pricePaid}" />
+				<br>
+				<label for="status" class="text-info font-weight-bold">Статус</label>
+				<select id="status" class="form-control " th:field="*{isCompleted}">
+					<option th:value="1">Завършен</option>
+					<option th:value="0">В процес</option>
+				</select>
+				<br>
+				<p>
+					<input type="submit" class="btn btn-info" value="Промени" />
+				</p>
+			</form>
+
+		</section>
+
+
+	</main>
+	<th:block th:replace="fragments :: footer" />
+</body>
+</html>

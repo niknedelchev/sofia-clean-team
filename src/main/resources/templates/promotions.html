@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments :: head"></head>
+<div th:replace="fragments :: navbar" />
+
+<body>
+	<main>
+		<section class="container py-5 frame">
+					<h3 class="text-info font-weight-bold">Промоции</h3>
+					<br>
+					<table class="table text-info font-weight-bold">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Категория</th>
+								<th scope="col">Услуга</th>
+								<th scope="col" class="text-danger">Регулярна цена</th>
+								<th scope="col" class="text-success">Промо цена</th>
+								<th scope="col" class="text-info font-weight-bold">Описание</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="jobTypeOnPromo : ${jobTypesOnPromo}">
+								<th th:text="${jobTypeOnPromo.id}" scope="row"></th>
+								<td th:text="${jobTypeOnPromo.category}"></td>
+								<td th:text="${jobTypeOnPromo.name}"></td>
+								<td th:text="${#numbers.formatDecimal(jobTypeOnPromo.regularPrice, 1,2) + ' лв'}" class="text-danger h6"></td>
+								<td th:text="${#numbers.formatDecimal(jobTypeOnPromo.promoPrice, 1,2) + ' лв'}" class="text-success h6"></td>
+								<td th:text="${jobTypeOnPromo.priceDescription}"></td>
+							</tr>
+						</tbody>
+					</table>
+		</section>
+
+
+	</main>
+	<th:block th:replace="fragments :: footer" />
+</body>
+</html>

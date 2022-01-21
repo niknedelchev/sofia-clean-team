@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments :: head"></head>
+<div th:replace="fragments :: navbar" />
+
+<body>
+	<main>
+		<section class="container py-5 frame">
+					<h2 class="text-center text-info">Услуги</h2>
+					<br>
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Услуга</th>
+								<th scope="col">Дата</th>
+								<th scope="col">Час</th>
+								<th scope="col">Цена</th>
+								<th scope="col">Клиент</th>
+								<th scope="col">Статус</th>
+								<th scope="col">Промяна</th>
+								<th scope="col">Изтрий</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="job : ${jobs}">
+								<th th:text="${job.id}" scope="row"></th>
+								<th th:text="${job.jobType.name}" scope="row"></th>
+								<td th:text="${job.jobDate}"></td>
+								<td th:text="${job.jobTime.hour}"></td>
+								<td th:text="${job.pricePaid}"></td>
+								<td th:text="${job.customer.firstName + ' ' + job.customer.lastName}"></td>
+								<td th:text="${job.isCompleted ? 'Завършени' : 'Заявени'}"></td>
+								<td> <a class="btn btn-info btn-block" title="промени по поръчка" th:href="${'/admin/jobs/edit/'+job.id}"> Промени </a></td>
+								<td> <a class="btn btn-danger btn-block" title="изтриване на поръчка" th:href="${'/admin/jobs/delete/'+job.id}"> Изтрий </a></td>
+							</tr>
+						</tbody>
+					</table>
+		</section>
+
+
+	</main>
+	<th:block th:replace="fragments :: footer" />
+</body>
+</html>

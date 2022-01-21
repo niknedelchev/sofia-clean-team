@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments :: head"></head>
+<div th:replace="fragments :: navbar" />
+
+<body>
+	<main>
+		<section class="py-5 text-center container">
+			<h1 class="display-1 text-info font-weight-bold">Sofia Clean Team</h1>
+			<br>
+			<img src="images/Logo.jpg" alt="sofia-clean-team-logo" class="img-fluid">
+			<div class="row py-lg-5">
+				<div class="col-lg-10 col-md-8 mx-auto">
+					<p class="h5" style="text-align: center;">
+						<b class="text-info">София клийн тийм</b> 
+						<span class="text-info"> - качествено професионално почистване на ниски цени в град София.</span>
+					</p>
+		
+				</div>
+			</div>
+		</section>
+		
+
+		<div class="py-5 bg-light index-services">
+			<div class="container">
+				<h2 class="display-4 text-info font-weight-bold">Услуги</h2>
+				<br>
+
+				<div class="row py-5">
+					<div th:each="jobType : ${jobTypes1}" class="col-sm-6 col-md-3 text-wrap" style="background:white;">
+							<img th:src="${jobType.image}" th:alt="${jobType.category.name.toLowerCase.replace('_',' ')}"  class="card-img-top mt-4" style="border-radius: 25px">
+            				<h4 class="text-info text-center mt-2 mb-2"><span th:text="${jobType.category}"/></h4>
+           			</div>
+				</div>
+				<div class="row">
+					<div th:each="jobType : ${jobTypes2}" class="col-sm-6 col-md-3 text-wrap" style="background:white;">
+							<img th:src="${jobType.image}" th:alt="${jobType.category.name.toLowerCase.replace('_',' ')}" class="card-img-top mt-4" style="border-radius: 25px">
+	            			<h4 class="text-info text-center mt-2 mb-2"><span th:text="${jobType.category}"/></h4>
+            		</div>
+				</div>
+				
+				<br><br>
+
+				<hr style="border: 1px solid #428BCA;">
+				<div class="row mt-5">
+					<div class="col-sm-12 col-md-7" style="height: 300px">
+					<h3 class="text-info font-weight-bold">За нас</h3>
+					<p class="text-info" style="text-align: justify; font-size: 20px">Ние сме експерти в почистването и сме екип на който може да се доверите. Като професионалисти в сферата на почистването ние предлагаме широк набор от услуги - пране на килими, почистване на замърсени повърхности, почистване след основен ремонт са само част от тях.
+						Ние предоставяме точните решения от които се нуждаете. Избирайки нас вие ще получите сигурност относно екипа който ви обслужва и отлична чистота. <a href="/about" title="за нас" class="text-primary">Вижте повече тук.</a></p>
+					</div>
+					<div class="col-sm-12 col-md-5" style="height: 300px; text-align: center;">
+					 	
+						<img src="images/16.jpg" alt="cleaning team"  style="height: 300px; max-width:300px; border-radius: 25px;">
+						
+					</div>
+				</div>
+				<br>
+				<hr style="border: 1px solid #428BCA;">
+				<div class="row">
+					<div class="col-sm-12 col-md-5" style="height: 300px; text-align: center;">
+						<img src="images/2.png" alt="services" style="height: 300px; max-width:300px; border-radius: 25px;">
+					</div>
+					<div class="col-sm-12 col-md-7" style="height: 300px">
+						<h3 class="text-info font-weight-bold">Услуги</h3>
+						<br>
+						<p class="text-info" style="text-align: justify; font-size: 20px"> 
+						Като наши клиенти имате възможност да резервирате еднократно почистване или абонамент. 
+						За да не губите излишно време вижте календара на ангажиментите ни. Това ви дава ясна представа кога сме ангажирани и кога имаме възможност да ви помогнем в почистването. 
+						Вижте предлаганите <a title="услуги по почистване" href="/cleaning-services" class="text-primary">услуги по почистване тук.</a></p>
+					</div>
+				</div>
+				<br>
+				<hr style="border: 1px solid #428BCA;">
+				<div class="row">
+					<div class="col-sm-12 col-md-7" style="height: 300px">
+					<h3 class="text-info font-weight-bold">Промоции</h3>
+					<br>
+					<p class="text-info" style="text-align: justify; font-size: 20px">Ние се стремим да поддържаме наистина атрактивни цени, така че нашите клиенти да са доволни. За да видите актуалните ни промоции моля <a href="/promotions" title="промоции и оферти" class="text-primary">натиснете тук.</a></p>
+					
+					</div>
+					<div class="col-sm-12 col-md-5" style="height: 300px; text-align: center;">
+						<img src="images/promotions.png" alt="promotions" style="height: 300px; max-width:300px; border-radius: 25px;">
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+	</main>
+	<th:block th:replace="fragments :: footer" />
+</body>
+</html>

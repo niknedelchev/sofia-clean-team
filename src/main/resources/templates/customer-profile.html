@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments :: head"></head>
+<div th:replace="fragments :: navbar" />
+
+<body>
+	<main>
+		<section class="container frame">
+			<h1 class="py-5 text-center text-info">Профил</h1>
+			<div class="row">
+			<div class="col-md-4 offset-md-4">
+			<table class="table text-info">
+				<tbody >
+					<tr>
+						<td>Име</td>
+						<td th:text="${user.customer.firstName}"></td>
+					</tr>
+					<tr>
+						<td>Фамилия</td>
+						<td th:text="${user.customer.lastName}"></td>
+					</tr>
+					<tr>
+						<td>Юзър</td>
+						<td th:text="${user.username}"></td>
+					</tr>
+					<tr>
+						<td>Роля</td>
+						<td th:text="${user.role}"></td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+		</div>
+		</section>
+
+
+	</main>
+	<th:block th:replace="fragments :: footer" />
+</body>
+</html>

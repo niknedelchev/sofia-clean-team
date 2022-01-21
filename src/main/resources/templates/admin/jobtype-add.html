@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments :: head"></head>
+<div th:replace="fragments :: navbar" />
+
+<body>
+	<main>
+		<section class="container py-5 frame">
+			<h2 class="text-center text-info">Видове услуги - добавяне</h2>
+			<br>
+
+			<form action="#" th:action="@{/admin/jobtype/add/}"
+				th:object="${jobType}" th:method="post" class="w-50">
+
+				<label for="Category" class="text-info font-weight-bold">Категория</label>
+				<select id="Category" class="form-control " th:field="*{category}">
+					<option th:each="category : ${categories}" th:value="${category.name}" th:text="${category.toString}"></option>
+				</select>
+				<br>
+				<label for="Image" class="text-info font-weight-bold">Изображение</label>
+				<input type="text" id="Image" class="form-control" placeholder="Линк към изображение" th:field="*{image}" />
+				<br>
+				<label for="Is_promo" class="text-info font-weight-bold">Промоция</label>
+				<select id="Is_promo" class="form-control " th:field="*{promo}">
+					<option th:value="1">Промоция</option>
+					<option th:value="0">Без промоция</option>
+				</select>
+				<br>
+				<label for="Name" class="text-info font-weight-bold">Наименование</label>
+				<input type="text" id="Name" class="form-control" placeholder="Наименование" th:field="*{name}" />
+				<br>
+				<label for="Promo_price" class="text-info font-weight-bold">Промоционална цена</label>
+				<input type="text" id="Promo_price" class="form-control" placeholder="Промоционална цена" th:field="*{promoPrice}" />
+				<br>
+				<label for="Regular_price" class="text-info font-weight-bold">Регулярна цена</label>
+				<input type="text" id="Regular_price" class="form-control" placeholder="Регулярна цена" th:field="*{regularPrice}" />
+				<br>
+				
+				<p>
+					<input type="submit" class="btn btn-info" value="Добави" />
+				</p>
+			</form>
+
+		</section>
+
+
+	</main>
+	<th:block th:replace="fragments :: footer" />
+</body>
+</html>

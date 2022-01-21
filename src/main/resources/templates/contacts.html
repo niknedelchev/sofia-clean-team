@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments :: head"></head>
+<div th:replace="fragments :: navbar" />
+
+<body>
+	<main>
+		<section>
+			<div id="contact" class="container bg-grey py-5 frame">
+
+				<div class="row">
+
+					<div class="col-sm-12 col-md-5">
+						<h2 class="text-center text-info font-weight-bold">Контакти</h2>
+						<br>
+						<p class="text-info">Пишете ни и ще се свържем с вас в рамките на 24 часа.</p>
+						<div class="row">
+							<div class="col col-4 text-info">
+							Адрес:
+							</div>
+							<div class="col col-8 text-info">
+							 Младост 1, София, България
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-4 text-info">
+							Телефон:
+							</div>
+							<div class="col-8 text-info">
+							 0889 750 062
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-4 text-info">
+							Имейл:
+							</div>
+							<div class="col-8 text-info">
+							 sofia-clean-team@gmail.com
+							</div>
+						</div>
+						
+						<h2 class="text-center mt-5 text-info font-weight-bold">Работно време</h2>
+						<br>
+						<div class="row">
+							<div class="col text-info">
+							Понеделник-Петък:
+							</div>
+							<div class="col text-info">
+							 09:00 - 18:00
+							</div>
+						</div>
+						<div class="row">
+							<div class="col text-info">
+							Събота:
+							</div>
+							<div class="col text-info">
+							09:00 - 14:00
+							</div>
+						</div>
+						<div class="row">
+							<div class="col text-info">
+							Неделя:
+							</div>
+							<div class="col text-info">
+							почивен ден
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-12 col-md-5 offset-2 text-info font-weight-bold">
+						<h2 class="text-center">Запитване</h2>
+						<br>
+
+
+						<form action="contacts" th:object="${contact}" method="POST">
+
+							<p>
+								Име: <input type="text" class="form-control"
+									th:field="*{customerName}" />
+							</p>
+							<p>
+								Телефон: <input type="text" class="form-control"
+									th:field="*{phoneNumber}" />
+							</p>
+							<p>
+								Имейл: <input type="text" class="form-control"
+									th:field="*{email}" />
+							</p>
+							<p>
+								Запитване: <input type="text" class="form-control" rows="5"
+									th:field="*{message}" style="height: 100px;" />
+							</p>
+							<br>
+							<p>
+								<input type="submit" class="btn btn-info" value="Предай" />
+							</p>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+	</main>
+	<th:block th:replace="fragments :: footer" />
+</body>
+</html>

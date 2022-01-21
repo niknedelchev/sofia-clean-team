@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments :: head"></head>
+<div th:replace="fragments :: navbar" />
+
+<body>
+	<main>
+		<section class="container py-5 frame">
+					<h2 class="text-center text-info">Запитвания</h2>
+					<br>
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Име</th>
+								<th scope="col">Телефонен номер</th>
+								<th scope="col">Имейл</th>
+								<th scope="col">Запитване</th>
+								<th scope="col">Статус</th>
+								<th scope="col">Промяна на статус</th>
+								<th scope="col">Изтрий</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="question : ${questions}">
+								<th th:text="${question.id}" scope="row"></th>
+								<th th:text="${question.customerName}" scope="row"></th>
+								<td th:text="${question.phoneNumber}"></td>
+								<td th:text="${question.email}"></td>
+								<td th:text="${question.message}"></td>
+								<td th:text="${question.isAnswered ? 'Отговорено' : 'Неотговорено'}"></td>
+								<td> <a th:if="${!question.isAnswered}" title="маркиране като отговорено" class="btn btn-info btn-block" th:href="${'/admin/questions/answered/'+question.id}"> Отговорено</a></td>
+								<td> <a class="btn btn-danger btn-block" title="изтриване на запитване" th:href="${'/admin/questions/delete/'+question.id}"> Изтрий</a></td>
+							</tr>
+						</tbody>
+					</table>
+		</section>
+
+
+	</main>
+	<th:block th:replace="fragments :: footer" />
+</body>
+</html>
